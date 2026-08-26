@@ -1,0 +1,47 @@
+flowchart TB
+    subgraph Surface[Conversation surfaces]
+        User[User]
+        Client[Chat or coding client]
+    end
+
+    subgraph Knowledge[Knowledge Loop]
+        Ingress[Trusted current-turn ingress]
+        Raw[Immutable content-addressed Raw]
+        Receipt[Closed turn receipt]
+        Search[Bounded hybrid retrieval]
+        Context[Quote-carrying context]
+        Reflect[Answer and reflection]
+        Epoch[Writer epoch gate]
+        Tombstone[Legacy tombstone view]
+        Wiki[Living Wiki claims]
+        Correct[Supersession and correction cases]
+        Outcome[Observed outcome cases]
+        Eval[Evaluation vectors]
+    end
+
+    subgraph Lenses[Derived lenses]
+        Markdown[Markdown and Obsidian]
+        Graph[Semantic graph]
+        Code[Code dependency graph]
+    end
+
+    subgraph Actions[Optional Action Loop]
+        Lease[Bounded capability]
+        Effect[Idempotent effect]
+        Reconcile[Receipt and reconciliation]
+    end
+
+    User --> Client --> Ingress
+    Ingress --> Raw
+    Ingress --> Receipt
+    Raw --> Search
+    Receipt --> Search
+    Wiki --> Search --> Context --> Reflect --> Epoch
+    Stale[Loaded stale client] --> Tombstone -->|refuse| Epoch
+    Epoch --> Wiki
+    Epoch --> Correct --> Wiki
+    Epoch --> Outcome --> Eval --> Search
+    Wiki -. derived .-> Markdown
+    Wiki -. derived .-> Graph
+    Reflect -. implementation .-> Code
+    Reflect -->|explicit delegation| Lease --> Effect --> Reconcile
