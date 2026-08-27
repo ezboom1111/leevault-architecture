@@ -54,6 +54,12 @@ The receipt closes the model's write reach for one turn. It records which Raw
 objects, candidate pages, and prior claims were actually served. A later patch
 cannot cite an object that was outside that closed reach.
 
+### Capture health receipt
+
+A separate content-free receipt records runtime contract version, surface, mode,
+success or failure, and latency. Evaluation uses a bounded current-version window;
+it does not mix old-runtime, shadow, or malformed rows into release readiness.
+
 ### Source span
 
 A claim carries a verified byte range or exact quote plus its Raw identifier and

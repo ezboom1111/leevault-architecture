@@ -175,6 +175,18 @@ class PublicBoundaryTests(unittest.TestCase):
         self.assertIn("app restart", failures.lower())
         self.assertIn("Writer epoch gate", diagram)
 
+    def test_published_evaluation_has_a_versioned_capture_slo(self) -> None:
+        repository = SCRIPT.parents[1]
+        evaluation = (repository / "docs" / "evaluation.md").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("runtime contract version", evaluation.lower())
+        self.assertIn("rolling window of ten active attempts", evaluation.lower())
+        self.assertIn("at least 95%", evaluation.lower())
+        self.assertIn("at most two seconds", evaluation.lower())
+        self.assertIn("complete latency samples", evaluation.lower())
+
     def test_git_history_rejects_personal_author_email(self) -> None:
         _commit_minimal_repo(self.root, "person" + "@" + "example.com")
 

@@ -15,6 +15,19 @@ a vector of observable properties and keeps causal claims conservative.
 - index drift and rebuild recovery;
 - lint, tests, and atomic-write failures.
 
+## Versioned capture readiness
+
+Each content-free health row carries a runtime contract version. Readiness uses
+only the current version's rolling window of ten active attempts, so measurements
+from an older implementation or shadow mode cannot make a new runtime look better
+or worse.
+
+The window is ready only after all ten attempts exist. It passes when capture
+success is at least 95%, successful captures have complete latency samples, and
+p95 latency is at most two seconds. Malformed rows are excluded rather than
+silently interpreted. A passing capture window proves transport readiness; it
+does not prove that semantic memory changed a later answer or decision.
+
 ## Retrieval and correction
 
 - whether a required claim appeared in the bounded context;
