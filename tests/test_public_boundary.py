@@ -182,7 +182,8 @@ class PublicBoundaryTests(unittest.TestCase):
         )
 
         self.assertIn("runtime contract version", evaluation.lower())
-        self.assertIn("rolling window of ten active attempts", evaluation.lower())
+        self.assertIn("ten distinct sessions", evaluation.lower())
+        self.assertIn("first active capture", evaluation.lower())
         self.assertIn("at least 95%", evaluation.lower())
         self.assertIn("at most two seconds", evaluation.lower())
         self.assertIn("complete latency samples", evaluation.lower())

@@ -17,12 +17,13 @@ a vector of observable properties and keeps causal claims conservative.
 
 ## Versioned capture readiness
 
-Each content-free health row carries a runtime contract version. Readiness uses
-only the current version's rolling window of ten active attempts, so measurements
-from an older implementation or shadow mode cannot make a new runtime look better
-or worse.
+Each content-free health row carries a runtime contract version and a one-way
+conversation identifier. Readiness uses only the first active capture from each
+of the current version's ten distinct sessions, so repeated turns in one chat,
+measurements from an older implementation, and shadow mode cannot make a new
+runtime look better or worse.
 
-The window is ready only after all ten attempts exist. It passes when capture
+The window is ready only after ten distinct sessions exist. It passes when capture
 success is at least 95%, successful captures have complete latency samples, and
 p95 latency is at most two seconds. Malformed rows are excluded rather than
 silently interpreted. A passing capture window proves transport readiness; it

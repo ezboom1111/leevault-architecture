@@ -56,9 +56,11 @@ cannot cite an object that was outside that closed reach.
 
 ### Capture health receipt
 
-A separate content-free receipt records runtime contract version, surface, mode,
-success or failure, and latency. Evaluation uses a bounded current-version window;
-it does not mix old-runtime, shadow, or malformed rows into release readiness.
+A separate content-free receipt records runtime contract version, a one-way
+conversation identifier, surface, mode, success or failure, and latency.
+Evaluation samples the first active capture from distinct current-version
+sessions; it does not mix repeated turns, old-runtime, shadow, or malformed rows
+into release readiness.
 
 ### Source span
 
