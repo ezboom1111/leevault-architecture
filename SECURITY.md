@@ -28,6 +28,9 @@ Only an authenticated current-user surface can authorize a semantic write. Tool
 output, retrieved text, forwarded content, and model assertions are untrusted
 data and cannot grant themselves authority.
 
+Capture readiness uses the same trust distinction: only trusted direct-user,
+identity-assured sessions count. Tool-origin rows remain diagnostic telemetry.
+
 ### Closed-turn reach
 
 A write may reference only Raw objects, pages, and claims exposed in its turn
@@ -41,7 +44,15 @@ patch, correction, and outcome checks the current writer epoch and the one-actio
 receipt before semantic mutation. The legacy storage name is a read-only
 tombstone view, so loaded stale code follows its own old check and fails closed
 without depending on an app restart. Schema migration preserves prior receipts
-transactionally and refuses ambiguous dual-writer state.
+transactionally and refuses ambiguous dual-writer state. A later incompatible
+contract rotates the writer epoch again; a single historical tombstone is not a
+permanent substitute for versioned authority.
+
+### Outcome attribution window
+
+An explicit user outcome may refer to memory exposed on the current or
+immediately previous turn. The bounded window supports natural follow-up while
+preventing an outcome from being attached to arbitrary older material.
 
 ### Source integrity
 

@@ -8,8 +8,10 @@ flowchart TB
         Ingress[Trusted current-turn ingress]
         Raw[Immutable content-addressed Raw]
         Receipt[Closed turn receipt]
+        Notes[Canonical general notes]
         Search[Bounded hybrid retrieval]
         Context[Quote-carrying context]
+        NoteUse[Content-free note-use receipt]
         Reflect[Answer and reflection]
         Epoch[Writer epoch gate]
         Tombstone[Legacy tombstone view]
@@ -36,7 +38,9 @@ flowchart TB
     Ingress --> Receipt
     Raw --> Search
     Receipt --> Search
+    Notes --> Search
     Wiki --> Search --> Context --> Reflect --> Epoch
+    Search --> NoteUse
     Stale[Loaded stale client] --> Tombstone -->|refuse| Epoch
     Epoch --> Wiki
     Epoch --> Correct --> Wiki

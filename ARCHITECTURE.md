@@ -18,7 +18,9 @@ flowchart LR
     R --> Q[Bounded retrieval]
     T --> Q
     W[Living Wiki] --> Q
+    N[Canonical general notes] --> Q
     Q --> C[Quote-carrying context]
+    Q --> U[Content-free note-use receipt]
     C --> M[Model answer and reflection]
     M --> Z[Writer epoch and one-action gate]
     Z -->|durable signal| P[Validated Wiki patch]
@@ -59,8 +61,24 @@ cannot cite an object that was outside that closed reach.
 A separate content-free receipt records runtime contract version, a one-way
 conversation identifier, surface, mode, success or failure, and latency.
 Evaluation samples the first active capture from distinct current-version
-sessions; it does not mix repeated turns, old-runtime, shadow, or malformed rows
-into release readiness.
+sessions whose content origin is trusted direct-user and whose identity is
+assured; it does not mix repeated turns, tool-origin calls, old-runtime, shadow,
+or malformed rows into release readiness.
+
+### Grounded general note
+
+Not every durable fact is already a structured Living Wiki claim. A canonical
+Markdown note may enter the bounded context only with a bounded excerpt and
+declared authority metadata: role, status, freshness, and source location. A
+title or path alone is discovery evidence, not enough grounding for a strong
+judgment.
+
+### Note-use receipt
+
+A content-free note-use receipt records the identifiers of claims and general
+notes actually exposed to the model, without copying their text into telemetry.
+It makes later citation, correction, and outcome attribution measurable while
+keeping note contents in the canonical store.
 
 ### Source span
 
@@ -78,7 +96,9 @@ outside generated blocks remains untouched.
 
 A correction supersedes a served claim and creates a hard regression case. An
 outcome records an observed result and optional explicit user attribution such as
-helped, harmed, changed-answer, or changed-decision.
+helped, harmed, changed-answer, or changed-decision. Attribution may refer to
+memory served on the current turn or the immediately previous turn, which is the
+smallest window that lets a user react naturally after seeing an answer.
 
 ## 3. Write path
 
@@ -115,6 +135,10 @@ epoch inside one database transaction. If an ambiguous state cannot be merged
 without guessing, initialization fails closed. Stale clients may still capture
 Raw and retrieve context; they cannot mutate canonical claims.
 
+Every backward-incompatible semantic-write contract must rotate the writer
+epoch again. Retiring only the oldest table does not retire processes loaded
+during a later transitional epoch.
+
 ## 4. Read path
 
 Retrieval is hybrid and deliberately bounded:
@@ -123,7 +147,10 @@ Retrieval is hybrid and deliberately bounded:
 2. current project focus and a small recent-turn window provide continuity;
 3. superseded claims are excluded from normal recall;
 4. the context contains exact quotes and identifiers, not unrestricted files;
-5. the model decides relevance inside the closed candidate menu.
+5. general notes carry bounded excerpts and declared authority instead of only
+   titles or filenames;
+6. a content-free note-use receipt records exposure for later evaluation;
+7. the model decides relevance inside the closed candidate menu.
 
 Similarity creates candidates. It does not decide truth, authority, or page
 routing by itself.

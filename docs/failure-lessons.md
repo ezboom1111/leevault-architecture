@@ -58,3 +58,24 @@ A transitional table created during cutover also showed why migrations must be
 preserving and idempotent. Its rows were merged into the current epoch before the
 intermediate table was retired; an empty new table was never treated as proof
 that old state could be discarded.
+
+## 9. Title-only recall looked like grounding
+
+Returning a relevant filename made the system appear to remember, but it did not
+give the model enough evidence to change a judgment safely. General-note recall
+now carries a bounded excerpt plus declared authority, status, freshness, and
+source location. Exposure is logged separately from citation and outcome.
+
+## 10. Tool-origin activity inflated capture readiness
+
+Counting every active health row allowed worker calls and model-created contexts
+to resemble independent user sessions. The readiness population now requires a
+trusted direct-user origin and assured conversation identity. Ineligible rows
+remain visible for diagnosis but cannot satisfy the release gate.
+
+## 11. One tombstone did not retire every stale writer
+
+The first epoch rotation stopped the oldest writer, but processes loaded during
+a transitional contract still shared the then-current table. The rule is now:
+rotate the writer epoch for every backward-incompatible semantic release,
+preserve compatible receipts transactionally, and fail closed on conflicts.

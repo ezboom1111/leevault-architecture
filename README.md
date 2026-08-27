@@ -18,7 +18,7 @@ Trusted current-turn capture
     ↓
 Immutable Raw + receipt
     ↓
-Bounded retrieval with exact source spans
+Bounded retrieval with exact source spans and grounded notes
     ↓
 Answer + reflection
     ↓
@@ -36,7 +36,8 @@ call. Each turn can produce a bounded event that changes what the next turn sees
    file notes, or approve every internal write.
 2. **Raw is immutable.** Semantic notes can change; the captured source does not.
 3. **Claims point back to exact evidence.** A file path or embedding score alone
-   is not provenance.
+   is not provenance. General notes are exposed only as a bounded excerpt with
+   declared authority, status, freshness, and source location.
 4. **Corrections supersede immediately.** The next query should see the corrected
    claim, while history remains auditable.
 5. **Graphs are lenses, not memory.** Obsidian, Graphify, CodeGraph, and embeddings
@@ -49,6 +50,9 @@ call. Each turn can produce a bounded event that changes what the next turn sees
 8. **Writer authority expires with the contract.** A long-lived client that
    loaded an older implementation must fail before mutation; process lifetime
    is not proof of current authority.
+9. **Recall exposure is observable without copying content.** A content-free
+   receipt records which claim or note references were served so later outcomes
+   can measure whether memory actually influenced a response.
 
 ## Repository map
 

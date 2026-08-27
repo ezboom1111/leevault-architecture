@@ -188,6 +188,28 @@ class PublicBoundaryTests(unittest.TestCase):
         self.assertIn("at most two seconds", evaluation.lower())
         self.assertIn("complete latency samples", evaluation.lower())
 
+    def test_published_contract_covers_grounded_notes_and_next_turn_feedback(self) -> None:
+        repository = SCRIPT.parents[1]
+        architecture = (repository / "ARCHITECTURE.md").read_text(encoding="utf-8")
+        evaluation = (repository / "docs" / "evaluation.md").read_text(
+            encoding="utf-8"
+        )
+        feedback = (repository / "docs" / "feedback-loop.md").read_text(
+            encoding="utf-8"
+        )
+        failures = (repository / "docs" / "failure-lessons.md").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("declared authority", architecture.lower())
+        self.assertIn("bounded excerpt", architecture.lower())
+        self.assertIn("content-free note-use receipt", architecture.lower())
+        self.assertIn("immediately previous turn", feedback.lower())
+        self.assertIn("trusted direct-user", evaluation.lower())
+        self.assertIn("tool-origin", evaluation.lower())
+        self.assertIn("title-only recall", failures.lower())
+        self.assertIn("rotate the writer epoch", failures.lower())
+
     def test_git_history_rejects_personal_author_email(self) -> None:
         _commit_minimal_repo(self.root, "person" + "@" + "example.com")
 

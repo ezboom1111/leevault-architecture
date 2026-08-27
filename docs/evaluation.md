@@ -17,11 +17,13 @@ a vector of observable properties and keeps causal claims conservative.
 
 ## Versioned capture readiness
 
-Each content-free health row carries a runtime contract version and a one-way
-conversation identifier. Readiness uses only the first active capture from each
-of the current version's ten distinct sessions, so repeated turns in one chat,
-measurements from an older implementation, and shadow mode cannot make a new
-runtime look better or worse.
+Each content-free health row carries a runtime contract version, a closed
+content-origin label, identity assurance, and a one-way conversation identifier.
+Readiness uses only the first active capture from each of the current version's
+ten distinct assured sessions, and that capture must have a trusted direct-user
+origin. Repeated turns in one chat,
+tool-origin or unknown-identity rows, measurements from an older implementation,
+and shadow mode cannot make a new runtime look better or worse.
 
 The window is ready only after ten distinct sessions exist. It passes when capture
 success is at least 95%, successful captures have complete latency samples, and
@@ -36,6 +38,12 @@ does not prove that semantic memory changed a later answer or decision.
 - correction propagation on the next turn;
 - exact recurrent error rate;
 - multi-session continuity.
+
+General-note evaluation is kept separate from structured-claim retrieval. It
+records note exposure with content-free references, whether the answer cited a
+served note, the freshness labels of notes actually used, and whether a later
+correction or outcome was attributed to the current or immediately previous
+turn. Title-only discovery does not count as grounded recall.
 
 ## Outcome vector
 

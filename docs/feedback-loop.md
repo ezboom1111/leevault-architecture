@@ -14,6 +14,10 @@ retrieve → answer → observe → correct/evaluate → retrieve differently
 - an observed success or failure;
 - explicit attribution that memory helped, harmed, or changed a decision.
 
+Outcome attribution may cite memory served on the current turn or the
+immediately previous turn. The latter lets the user say “that answer helped” naturally in a
+follow-up without opening an unbounded attribution window.
+
 ## Events that should not become durable memory
 
 - one-off task instructions;
