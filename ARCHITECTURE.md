@@ -31,7 +31,7 @@ flowchart LR
     P --> W
     X --> W
     O --> E[Evaluation vectors]
-    E --> Q
+    E -. evaluated changes .-> Q
     W -. derived only .-> G[Graph and embedding lenses]
     M -->|delegated external effect| A[Optional Action Loop]
 ```
@@ -112,7 +112,9 @@ smallest window that lets a user react naturally after seeing an answer.
 7. Validate the writer epoch and one-action lease before touching a semantic
    projection.
 8. Validate authority, source reach, page reach, path safety, and atomicity.
-9. Update the search index incrementally; fall back to a full rebuild on drift.
+9. Update derived search state outside the latency-sensitive prompt path. A full
+   rebuild belongs to maintenance, never to a blocking prompt hook. If the index
+   is unavailable or incompatible, report degraded retrieval explicitly.
 
 One-off instructions such as “continue” or “summarize this” remain in Raw but do
 not become durable Wiki claims.
@@ -141,9 +143,11 @@ during a later transitional epoch.
 
 ## 4. Read path
 
-Retrieval is hybrid and deliberately bounded:
+Retrieval is deliberately bounded. The current default uses SQLite FTS5/BM25
+lexical retrieval and evidence/claim relationships, not a mandatory vector DB:
 
-1. lexical and optional semantic search produce candidates;
+1. lexical search produces candidates; semantic/vector search is an optional
+   extension, not a claim about the current default;
 2. current project focus and a small recent-turn window provide continuity;
 3. superseded claims are excluded from normal recall;
 4. the context contains exact quotes and identifiers, not unrestricted files;
@@ -151,6 +155,11 @@ Retrieval is hybrid and deliberately bounded:
    titles or filenames;
 6. a content-free note-use receipt records exposure for later evaluation;
 7. the model decides relevance inside the closed candidate menu.
+
+Project evidence has a separate revision-pinned path. Selected original artifacts
+are registered with a project identity, content hash, and project revision. A read
+request must use that project revision, not substitute an artifact hash. Large or
+binary source status stays explicit. A style summary cannot replace the original.
 
 Similarity creates candidates. It does not decide truth, authority, or page
 routing by itself.
@@ -166,15 +175,22 @@ Three surfaces serve different jobs:
 Their outputs are reproducible and disposable. A graph community, embedding
 neighbor, or centrality score must never auto-promote a rule or fact.
 
+Graphify is an agent-invoked task lens, not a file watcher or scheduled full-vault
+rebuild. A rule about a large unfamiliar folder is routing guidance for the agent;
+it does not itself implement an automatic trigger.
+
 ## 6. Human involvement
 
 The goal is no repetitive approval prompts, not removal of human agency.
 
-Automatic by default:
+Configured native surfaces automate capture and bounded retrieval. Semantic
+writes require the model to identify a durable current-user statement and pass
+the evidence contract. The user is not asked to maintain a tagging or approval queue.
 
-- capture, retrieval, summarization, linking, correction, linting, indexing;
-- reversible local edits within an already delegated workspace;
-- bounded experiments with explicit rollback and outcome measurement.
+Project-source selection and improvement-task submission still require the
+working agent's judgment. After submission, generation, separate review, and
+derived publication can run automatically with bounded retries. This background
+route does not grant arbitrary product-code editing or deployment authority.
 
 Explicit delegation remains necessary when opening or expanding authority over:
 
@@ -186,3 +202,18 @@ Explicit delegation remains necessary when opening or expanding authority over:
 
 The human supplies goals, values, corrections, and root authority. The system
 handles repeated execution inside that boundary.
+
+## 7. Replaceable workers and the dashboard body
+
+Personal facts and generated project procedures have separate authority. A model
+worker can propose a derived procedure, but only the host validates and publishes
+it; the proposal does not become a statement made by the user. Original source
+revision, provider configuration, candidate identity, and review receipts remain
+bound to the task. Generation and review run in separate processes; this is not
+necessarily a different-model review.
+
+The dashboard owns business transactions, task/run state, and artifact navigation.
+LeeVault owns durable personal evidence, corrections, project references, and
+reusable procedures. Sharing project/run/artifact identities joins those domains
+without creating two competing personal memories. See the
+[brain/body contract and current gaps](docs/brain-body-integration.md).

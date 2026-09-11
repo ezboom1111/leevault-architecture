@@ -63,3 +63,18 @@ usefulness. Model self-ratings are diagnostic hints, not outcomes.
 A retrieval or reflection change should be kept only when it improves held-out
 real cases without increasing harmful recall, recurrent error, or latency beyond
 the declared budget. Synthetic cases remain separate from live outcomes.
+
+## Public evidence boundary
+
+The readiness window above is an evaluation contract, not a declaration that
+every current client has met it. Public CI here exercises publication guards and
+documentation regressions. Private runtime experiments are summarized separately
+in [runtime status](runtime-status.md); their private corpus and execution traces
+are not included and cannot be independently rerun from this repository.
+
+For project continuity, measure original-reference use, revision fidelity,
+correction propagation, artifact tests, and repeated failures separately. For a
+dashboard integration, also measure project identity agreement, duplicate event
+handling, result receipt persistence, and whether a later task consumed the
+relevant correction. A successful CLI exit or archived document is not proof of
+memory efficacy. No global routing calibration is justified by a few examples.

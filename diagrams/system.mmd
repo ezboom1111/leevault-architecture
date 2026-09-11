@@ -9,7 +9,7 @@ flowchart TB
         Raw[Immutable content-addressed Raw]
         Receipt[Closed turn receipt]
         Notes[Canonical general notes]
-        Search[Bounded hybrid retrieval]
+        Search[Bounded lexical and evidence retrieval]
         Context[Quote-carrying context]
         NoteUse[Content-free note-use receipt]
         Reflect[Answer and reflection]
@@ -44,8 +44,23 @@ flowchart TB
     Stale[Loaded stale client] --> Tombstone -->|refuse| Epoch
     Epoch --> Wiki
     Epoch --> Correct --> Wiki
-    Epoch --> Outcome --> Eval --> Search
+    Epoch --> Outcome --> Eval
+    Eval -. evaluated changes .-> Search
     Wiki -. derived .-> Markdown
     Wiki -. derived .-> Graph
     Reflect -. implementation .-> Code
     Reflect -->|explicit delegation| Lease --> Effect --> Reconcile
+
+    subgraph ProjectKnowledge[Project continuity]
+        Originals[Revision-pinned originals]
+        Job[Agent-submitted improvement task]
+        Worker[Replaceable generator]
+        Review[Separate review process]
+        Publish[Host publishes derived procedure]
+    end
+    Originals --> Context
+    Reflect -->|measured task failure| Job
+    Job -->|later response-end event| Worker --> Review --> Publish
+    Publish --> Context
+    Body[Dashboard projects and work records] -->|current note lookup and snapshots| Notes
+    Body -. planned project context and outcome adapter .-> ProjectKnowledge

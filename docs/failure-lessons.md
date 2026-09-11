@@ -79,3 +79,23 @@ The first epoch rotation stopped the oldest writer, but processes loaded during
 a transitional contract still shared the then-current table. The rule is now:
 rotate the writer epoch for every backward-incompatible semantic release,
 preserve compatible receipts transactionally, and fail closed on conflicts.
+
+## 12. A project summary did not preserve the original design
+
+A generic taste note could not reproduce an earlier HTML artifact. Original
+references now have project identity, source hashes, and revision-pinned reads.
+The generated procedure supplements the original; it does not replace it.
+
+## 13. A connected dashboard did not imply a connected memory loop
+
+The dashboard could search and preserve notes while its restricted CLI execution
+lane intentionally disabled native hooks. This was a valid read-only lane, not
+proof that the worker received memory or returned learning outcomes. Fix the
+explicit host context/result adapters; do not silently remove execution controls
+or claim that every application result is a trusted user statement.
+
+## 14. A tested alternative was described like a live dependency
+
+Hermes passed a worker experiment, while Claude remained the configured default.
+Graphify had a task-routing rule, not a file-count watcher. Public descriptions
+must distinguish installed, configured, invoked, tested, and outcome-improving.

@@ -1,4 +1,6 @@
-# LeeVault Architecture
+# LeeVault — evidence that survives the next conversation
+
+[한국어 설명](docs/overview-ko.md) · [Current status](docs/runtime-status.md) · [Brain/body integration](docs/brain-body-integration.md)
 
 LeeVault is a conversation-first reference architecture for durable AI memory.
 Its central idea is simple: preserve what the user actually said, let the model
@@ -7,7 +9,13 @@ improves later decisions.
 
 This repository is an **architecture-only public reference**. It contains no
 production Vault, user messages, source documents, credentials, local paths,
-private decisions, or deployment configuration.
+private decisions, or deployment configuration. The operational runtime remains
+private. Public CI validates the documents and publication boundary, not that
+private runtime.
+
+The intended use is a shared memory and evidence layer for everyday coding,
+design, research, and a solo-business dashboard. It is not a new chat application
+that users must move into, and it does not replace the model doing the work.
 
 ## The short version
 
@@ -24,11 +32,38 @@ Answer + reflection
     ↓
 Living Wiki patch / correction / outcome
     ↓
-Evaluation changes the next retrieval decision
+Verified corrections and project procedures inform a later task
+    ↓
+Measure whether the later artifact actually improved
 ```
 
 The loop is recursive in the systems sense, not through an unbounded function
 call. Each turn can produce a bounded event that changes what the next turn sees.
+This is not model-weight training or automatic global search-weight tuning.
+
+## What runs where
+
+| Responsibility | Component | Status at the September 11, 2026 audit |
+| --- | --- | --- |
+| Capture, provenance, correction, bounded retrieval | Custom LeeVault runtime | Implemented locally; private runtime version 0.2.2 |
+| Original HTML/code/design references | Revision-pinned project reference catalog | Implemented and exercised across local Claude/Codex sessions |
+| Coding, design, research, and task judgment | Foreground Claude/Codex + task-specific tools | Runs in the user's existing work environment |
+| Deferred project-procedure generation and separate review | Replaceable worker interface | Claude configured; Hermes tested as an alternative |
+| Document relations / code impact | Graphify / code graph tools | Optional task-driven lenses, not always-on memory |
+| Business records, work execution, artifacts, status UI | Separate dashboard body | Local prototype; full brain/body feedback integration remains incomplete |
+
+Submitting an improvement task still requires the working agent to choose useful
+evidence. After submission, a later response-end event can run one bounded job.
+There is no background project-model call when no task is pending. No VPS,
+Ollama, Telegram command, or Hermes chat interface is required for this local path.
+
+## The problem this project tries to solve
+
+"Use the same design as before" is not satisfied by recalling "the user likes
+clean interfaces." The model needs the actual reference artifact, the correct
+project version, and the latest correction. LeeVault separates original evidence
+from generated working knowledge, then checks whether the next artifact respects
+that evidence. Storage, retrieval, use, and improved outcomes are different claims.
 
 ## Design principles
 
@@ -61,6 +96,9 @@ call. Each turn can produce a bounded event that changes what the next turn sees
 - [docs/feedback-loop.md](docs/feedback-loop.md) — bounded recursive improvement
 - [docs/evaluation.md](docs/evaluation.md) — outcome and freshness measurements
 - [docs/failure-lessons.md](docs/failure-lessons.md) — what failed and why
+- [docs/runtime-status.md](docs/runtime-status.md) — implemented, tested, optional, and unverified
+- [docs/brain-body-integration.md](docs/brain-body-integration.md) — dashboard ownership and missing connections
+- [docs/overview-ko.md](docs/overview-ko.md) — Korean project introduction
 - [diagrams/system.mmd](diagrams/system.mmd) — standalone Mermaid source
 - `scripts/validate_public_repo.py` — fail-closed public-boundary validator
 
@@ -75,5 +113,5 @@ call. Each turn can produce a bounded event that changes what the next turn sees
 ## Status and license
 
 This is a public architecture reference, not a packaged product or a production
-security claim. No reuse license is granted in this first release; a license can
+security claim. No reuse license is granted by this repository; a license can
 be selected separately without coupling that legal choice to the privacy review.

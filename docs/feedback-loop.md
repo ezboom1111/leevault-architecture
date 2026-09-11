@@ -32,8 +32,27 @@ follow-up without opening an unbounded attribution window.
 - retrieval returns a capped candidate set;
 - writes are idempotent;
 - corrections supersede rather than append contradictory active claims;
-- background graph regeneration cannot promote canon;
-- evaluation changes ranking experiments, not global rules automatically.
+- optional graph regeneration cannot promote canon;
+- evaluation supplies evidence for ranking experiments; it does not update
+  global weights or rules automatically.
 
 This gives natural improvement without turning the system into an autonomous
 governance engine.
+
+## Project-procedure loop
+
+```text
+read original → work → measure a failure → submit scoped improvement task
+    → generate → separate review → host publishes derived procedure
+    → next task reads original + procedure → measure again
+```
+
+This route complements personal-memory corrections; it cannot invent a user's
+preferences. The current working agent selects the evidence and submits the
+task. A later nonrecursive Stop event drains one eligible task. The worker is
+not an always-on daemon, and Stop does not discover arbitrary files or invoke
+Graphify automatically.
+
+The configured worker is Claude; Hermes passed a replaceable-worker experiment.
+Neither fact proves indefinite autonomous improvement. Success means a later
+artifact passes a predeclared check, not simply that a new skill file exists.
