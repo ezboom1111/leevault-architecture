@@ -1,5 +1,9 @@
 # Runtime status — September 11, 2026
 
+**Updated September 13:** the [connection follow-up](integration-verification-2026-09-13.md)
+records the index lock fix, project evidence/result adapter, retry-safe completion
+records, and newer tests. The September 11 publication audit below is historical.
+
 This page separates implementation, experiments, and future integration. It is
 an architecture reference, not an installable release of the private runtime.
 

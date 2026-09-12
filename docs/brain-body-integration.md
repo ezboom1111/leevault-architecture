@@ -1,5 +1,11 @@
 # A shared brain for a solo-business body
 
+**September 13 follow-up:** project evidence delivery and attributed result return
+are now implemented locally and tested with both native CLIs. See the
+[implementation and verification update](integration-verification-2026-09-13.md).
+The September 11 audit below is retained as the historical baseline, not current
+status for those resolved gaps. General autonomous improvement remains unproven.
+
 Status: source audit and integration contract, September 11, 2026. The local
 dashboard prototype already has a knowledge bridge, but this is not yet a closed-loop integration.
 The proposed connections below are not reported as implemented.

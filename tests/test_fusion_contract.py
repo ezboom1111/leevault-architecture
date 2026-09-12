@@ -9,6 +9,12 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class FusionContractTests(unittest.TestCase):
+    def test_connection_followup_is_not_marketed_as_general_intelligence(self):
+        text = (ROOT / 'docs' / 'integration-verification-2026-09-13.md').read_text(encoding='utf-8')
+        for phrase in ('host-provided evidence', 'mechanical execution outcomes',
+                       'not model-weight training', 'server is running', 'synthetic project data'):
+            self.assertIn(phrase, text)
+
     def test_runtime_status_distinguishes_default_worker_and_optional_tools(self):
         text = (ROOT / "docs" / "runtime-status.md").read_text(encoding="utf-8")
         for phrase in (
