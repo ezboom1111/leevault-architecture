@@ -59,3 +59,25 @@ memory-off/on/removal/reapplication comparisons; and delayed regression checks.
 Automatic procedure generation/review remains a separate existing project-worker
 boundary, not a claim that every returned result silently rewrites the architecture.
 The honest label remains **knowledge-linked dashboard with feedback continuity**.
+
+## Later operational check on September 13
+
+After a consistent database backup, the actual local dashboard was started.
+One existing-subscription Claude task received three registered project references
+and its result returned automatically. The project source report was then updated
+with the observed operational evidence. A following existing-subscription Codex
+task received the revised source and the previous answer as an explicitly stale
+result; it corrected the earlier synthetic-only status and cited the revised source.
+Both result envelopes and text hashes were checked. The return status showed two
+recorded results, none pending, and none failed.
+
+These are maintainer-reported operational continuity checks, not a same-model
+causal comparison: the providers differed and the source changed. They do not
+establish autonomous lesson discovery or long-term artifact quality. A separate
+synthetic four-condition feedback ablation supported scoped information reuse,
+but is not counted as real business impact. Private records, identifiers, prompts,
+model responses, and database backups remain excluded from this repository.
+
+The existing Claude memory connection was reconnected without closing its
+conversation. Other already-open clients still require their own safe refresh;
+a successful dashboard job is not evidence that every client has reloaded.
